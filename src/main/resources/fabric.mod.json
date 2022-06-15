@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "mainmenuchanger",
+  "version": "${version}",
+  "name": "Main Menu Changer",
+  "description": "Configurable mod that lets you change how the Main Menu is laid out.",
+  "authors": ["Stereo528"],
+  "contact": {
+    "website": "https://stereo528.github.io",
+    "repository": "https://github.com/Stereo528/MainMenuChanger"
+  },
+  "license": "BSD-3-Clause",
+  "icon": "assets/mainmenuchanger/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "io.github.stereo528.mainmenuchanger.client.MainMenuChangerClient"
+    ]
+  },
+  "mixins": [
+    "MainMenuChanger.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "1.19.x"
+  }
+}
