@@ -7,7 +7,8 @@
   "authors": ["Stereo528"],
   "contact": {
     "website": "https://stereo528.github.io",
-    "repository": "https://github.com/Stereo528/MainMenuChanger"
+    "repository": "https://github.com/Stereo528/MainMenuChanger",
+    "issues": "https://github.com/Stereo528/MainMenuChanger/issues"
   },
   "license": "BSD-3-Clause",
   "icon": "assets/mainmenuchanger/icon.png",
