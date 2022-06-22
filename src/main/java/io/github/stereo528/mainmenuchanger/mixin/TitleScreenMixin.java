@@ -1,15 +1,18 @@
 package io.github.stereo528.mainmenuchanger.mixin;
 
 import io.github.stereo528.mainmenuchanger.Config;
+import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.SharedConstants;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
+import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -21,13 +24,13 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
+import java.util.List;
+import java.util.Objects;
+
 
 @Mixin(TitleScreen.class)
-public class TitleScreenMixin extends Screen{
+public class TitleScreenMixin extends Screen {
     @Shadow private String splash;
-
-    @Shadow @Final private boolean fading;
-    @Shadow private long fadeInStart;
     @Shadow @Final @Mutable public static Component COPYRIGHT_TEXT;
 
     protected TitleScreenMixin(Component component) {
@@ -43,10 +46,13 @@ public class TitleScreenMixin extends Screen{
         }
     }
 
-//    @Inject(method = "init", at = @At("TAIL"))
-//    protected void init(CallbackInfo info) {
-//
-//    }
+    @Inject(method = "init", at = @At("HEAD"))
+    protected void noRealmsNotifs(CallbackInfo info) {
+        if (Config.NO_REALMS) {
+            assert this.minecraft != null;
+            this.minecraft.options.realmsNotifications().set(false);
+        }
+    }
 
     @ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;scale(FFF)V"))
     public void scale(Args args) {
@@ -69,8 +75,7 @@ public class TitleScreenMixin extends Screen{
         if (Config.CHANGE_VERSION) {
             if (this.minecraft.isDemo()) {
                 version = version + "Demo";
-            }
-            else {
+            } else {
                 version = version + " " + this.minecraft.getVersionType();
             }
             if (Config.MOD_COUNT) {
@@ -78,9 +83,7 @@ public class TitleScreenMixin extends Screen{
             }
 
 
-
-        }
-        else {
+        } else {
             version = "Minecraft " + version;
             if (this.minecraft.isDemo()) {
                 version = version + " Demo";
@@ -90,8 +93,7 @@ public class TitleScreenMixin extends Screen{
             if (Minecraft.checkModStatus().shouldReportAsModified()) {
                 if (Config.MOD_COUNT) {
                     version = version + " (" + FabricLoader.getInstance().getAllMods().size() + " Mods)";
-                }
-                else {
+                } else {
                     version = version + I18n.get("menu.modded", new Object[0]);
                 }
             }
@@ -99,4 +101,34 @@ public class TitleScreenMixin extends Screen{
         return version;
     }
 
+    @Inject(method = "init", at = @At("TAIL"))
+    protected void removeButtons(CallbackInfo info) {
+        final int space = 24;
+        int yOff = 0;
+        int posY = 0;
+        List<AbstractWidget> widgetList = Screens.getButtons((Screen) (Object) this);
+        for (AbstractWidget button : widgetList) {
+            if (Config.NO_REALMS) {
+                if (Objects.equals(button.getMessage(), Component.translatable("menu.online"))) {
+                    button.visible = false;
+                    yOff -= space;
+                }
+                if (Objects.equals(button.getMessage(), Component.translatable("menu.options"))) {
+                    button.y -= space;
+                }
+                if (Objects.equals(button.getMessage(), Component.translatable("menu.quit"))) {
+                    button.y -= space;
+                }
+            }
+            if (Config.NO_SIDE_BUTTONS) {
+                if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.language"))) {
+                    button.visible = false;
+                }
+                if (Objects.equals(button.getMessage(),Component.translatable("narrator.button.accessibility"))) {
+                    button.visible = false;
+                }
+            }
+
+        }
+    }
 }

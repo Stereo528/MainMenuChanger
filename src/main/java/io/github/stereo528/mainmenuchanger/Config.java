@@ -22,6 +22,7 @@ public class Config {
     public static boolean CHANGE_VERSION;
     public static boolean MOD_COUNT;
     public static boolean NO_REALMS;
+    public static boolean NO_SIDE_BUTTONS;
 
     public static void init() throws IOException {
         read();
@@ -41,10 +42,11 @@ public class Config {
                 final JsonObject object = jsonElement.getAsJsonObject();
 
                 SMALLER_SPLASH = readBoolValue(object, "smaller_splash", false);
-                CHANGE_COPYRIGHT = readBoolValue(object, "change_copyright_to_©", false);
+                CHANGE_COPYRIGHT = readBoolValue(object, "change_copyright_to_(c)", false);
                 CHANGE_VERSION = readBoolValue(object, "shorter_version_text", false);
                 MOD_COUNT = readBoolValue(object, "mod_count", false);
                 NO_REALMS = readBoolValue(object, "disable_realms_button_and_notifs", false);
+                NO_SIDE_BUTTONS = readBoolValue(object, "disable_side_buttons",false);
 
 
             } catch (IOException e) {
@@ -61,11 +63,13 @@ public class Config {
             jsonWriter.setIndent("  ");
             jsonWriter.beginObject()
                 .name("smaller_splash").value(false)
-                .name("change_copyright_to_©").value(false)
+                .name("change_copyright_to_(c)").value(false)
                     .name("COMMENT_0").value("Changes the version text to <version> <modloader>")
                 .name("shorter_version_text").value(false)
                 .name("mod_count").value(false)
                 .name("disable_realms_button_and_notifs").value(false)
+                    .name("COMMENT_1").value("Removes Language and Accessibility buttons from the title screen")
+                .name("disable_side_buttons").value(false)
             .endObject();
 
         } catch (IOException e) {
@@ -79,6 +83,7 @@ public class Config {
         CHANGE_VERSION = false;
         MOD_COUNT = false;
         NO_REALMS = false;
+        NO_SIDE_BUTTONS = false;
     }
 
     public static boolean readBoolValue(JsonObject json, String key, boolean defaultValue) {
