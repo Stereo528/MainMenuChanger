@@ -1,0 +1,16 @@
+{
+    "text.mainmenuchanger.modcount": "%d (%d mods)",
+
+    "text.autoconfig.mainmenuchanger.title": "Main Menu Changer config",
+    "text.autoconfig.mainmenuchanger.option.smallerSplash": "Smaller splash",
+    "text.autoconfig.mainmenuchanger.option.changeCopyrightToC": "Change copyright to ©",
+    "text.autoconfig.mainmenuchanger.option.shorterVersionText": "Shorter version text",
+    "text.autoconfig.mainmenuchanger.option.shorterVersionText.@Tooltip": "Changes the version text to <version> <modloader>.",
+    "text.autoconfig.mainmenuchanger.option.modCount": "Mod count",
+    "text.autoconfig.mainmenuchanger.option.disableRealmsButtonAndNotifs": "Disable Realms button and notifications",
+    "text.autoconfig.mainmenuchanger.option.disableSideButtons": "Disable side buttons",
+    "text.autoconfig.mainmenuchanger.option.disableSideButtons.@Tooltip": "Removes Language and Accessibility buttons from the title screen.",
+
+    "modmenu.summaryTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out.",
+    "modmenu.descriptionTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out."
+}
