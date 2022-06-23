@@ -11,8 +11,9 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
-import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -40,9 +41,9 @@ public class TitleScreenMixin extends Screen {
     @Inject(method = "init", at = @At("HEAD"))
     protected void changeCopyright(CallbackInfo info) {
         if (Config.CHANGE_COPYRIGHT) {
-            COPYRIGHT_TEXT = Component.literal("© Mojang AB");
+            COPYRIGHT_TEXT = new TextComponent("© Mojang AB");
         } else {
-            COPYRIGHT_TEXT = Component.literal("Copyright Mojang AB. Do not distribute!");
+            COPYRIGHT_TEXT = new TextComponent("Copyright Mojang AB. Do not distribute!");
         }
     }
 
@@ -50,7 +51,7 @@ public class TitleScreenMixin extends Screen {
     protected void noRealmsNotifs(CallbackInfo info) {
         if (Config.NO_REALMS) {
             assert this.minecraft != null;
-            this.minecraft.options.realmsNotifications().set(false);
+            this.minecraft.options.realmsNotifications = false;
         }
     }
 
@@ -109,22 +110,22 @@ public class TitleScreenMixin extends Screen {
         List<AbstractWidget> widgetList = Screens.getButtons((Screen) (Object) this);
         for (AbstractWidget button : widgetList) {
             if (Config.NO_REALMS) {
-                if (Objects.equals(button.getMessage(), Component.translatable("menu.online"))) {
+                if (Objects.equals(button.getMessage(), new TranslatableComponent("menu.online"))) {
                     button.visible = false;
                     yOff -= space;
                 }
-                if (Objects.equals(button.getMessage(), Component.translatable("menu.options"))) {
+                if (Objects.equals(button.getMessage(), new TranslatableComponent("menu.options"))) {
                     button.y -= space;
                 }
-                if (Objects.equals(button.getMessage(), Component.translatable("menu.quit"))) {
+                if (Objects.equals(button.getMessage(), new TranslatableComponent("menu.quit"))) {
                     button.y -= space;
                 }
             }
             if (Config.NO_SIDE_BUTTONS) {
-                if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.language"))) {
+                if (Objects.equals(button.getMessage(), new TranslatableComponent("narrator.button.language"))) {
                     button.visible = false;
                 }
-                if (Objects.equals(button.getMessage(),Component.translatable("narrator.button.accessibility"))) {
+                if (Objects.equals(button.getMessage(), new TranslatableComponent("narrator.button.accessibility"))) {
                     button.visible = false;
                 }
             }
