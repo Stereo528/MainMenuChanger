@@ -16,12 +16,19 @@
   "entrypoints": {
     "client": [
       "io.github.stereo528.mainmenuchanger.client.MainMenuChangerClient"
+    ],
+    "modmenu": [
+      "io.github.stereo528.mainmenuchanger.config.ModMenuIntegration"
     ]
   },
   "mixins": [
     "MainMenuChanger.mixins.json"
   ],
   "depends": {
-    "minecraft": ">=1.19"
+    "minecraft": ">=1.19",
+    "cloth-config2": ">=5.3.63"
+  },
+  "recommends": {
+    "modmenu": "*"
   }
 }

@@ -1,0 +1,16 @@
+{   
+    "text.mainmenuchanger.modcount": "%d (%d модов)",
+
+    "text.autoconfig.mainmenuchanger.title": "Настройки Main Menu Changer",
+    "text.autoconfig.mainmenuchanger.option.smallerSplash": "Уменьшить сплэш",
+    "text.autoconfig.mainmenuchanger.option.changeCopyrightToC": "Укоротить строку копирайта",
+    "text.autoconfig.mainmenuchanger.option.shorterVersionText": "Укоротить строку версии",
+    "text.autoconfig.mainmenuchanger.option.shorterVersionText.@Tooltip": "Меняет текст версии на <версия> <загрузчик модов>.",
+    "text.autoconfig.mainmenuchanger.option.modCount": "Счётчик модов",
+    "text.autoconfig.mainmenuchanger.option.disableRealmsButtonAndNotifs": "Отключить кнопку Realms и уведомления",
+    "text.autoconfig.mainmenuchanger.option.disableSideButtons": "Отключить боковые кнопки",
+    "text.autoconfig.mainmenuchanger.option.disableSideButtons.@Tooltip": "Убирает с главного меню кнопки языка и специальных возможностей.",
+
+    "modmenu.summaryTranslation.mainmenuchanger": "Мод, который позволяет настроить элементы главного меню под себя.",
+    "modmenu.descriptionTranslation.mainmenuchanger": "Мод, который позволяет настроить элементы главного меню под себя."
+}
