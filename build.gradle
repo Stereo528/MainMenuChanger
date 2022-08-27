@@ -57,6 +57,19 @@ jar {
     }
 }
 
+task buildOrPublish {
+    group = "build"
+    String mavenUser = System.getenv().MAVEN_USER
+    if (mavenUser != null && !mavenUser.isEmpty()) {
+        dependsOn(tasks.getByName("publish"))
+        println("Prepared To Publish to Maven")
+    } else {
+        dependsOn(tasks.getByName("build"))
+        println("Prepared to Build")
+    }
+}
+
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
