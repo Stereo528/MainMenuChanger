@@ -5,6 +5,7 @@ import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
+
 @Config(name = "mainmenuchanger")
 public class ModConfig implements ConfigData {
 
@@ -23,4 +24,8 @@ public class ModConfig implements ConfigData {
     @Comment("Removes Language and Accessibility buttons from the title screen.")
     @ConfigEntry.Gui.Tooltip
     public boolean disableSideButtons = false;
+
+    @Comment("Make the Multiplayer and Singleplayer buttons be on the same line")
+    @ConfigEntry.Gui.Tooltip
+    public boolean mergeMultiAndSingle = false;
 }

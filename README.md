@@ -18,10 +18,8 @@ This mod allows you to:
 - Disable the Realms button and Realm Notifications
 - and lastly, disable the Language and Accessibility buttons from the main menu
 
-All with a handy-dandy config!²
+All with a handy-dandy config!
 
 ¹ ModMenu will still display mod count if both `shorter_version_text` and `mod_count` are set to false, as it employs the vanilla behavior, which ModMenu overwrites, but can be set to not via its config.
-
-² Config has everything set to false by default, and can currently only be edited through a text editor by opening MainMenuChanger.json in your `config` folder of `.minecraft`
 
 

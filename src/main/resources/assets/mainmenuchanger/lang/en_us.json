@@ -10,6 +10,8 @@
     "text.autoconfig.mainmenuchanger.option.disableRealmsButtonAndNotifs": "Disable Realms button and notifications",
     "text.autoconfig.mainmenuchanger.option.disableSideButtons": "Disable side buttons",
     "text.autoconfig.mainmenuchanger.option.disableSideButtons.@Tooltip": "Removes Language and Accessibility buttons from the title screen.",
+    "text.autoconfig.mainmenuchanger.option.mergeMultiAndSingle": "Merge Multiplayer & Singleplayer Buttons",
+    "text.autoconfig.mainmenuchanger.option.mergeMultiAndSingle.@Tooltip": "Make the Multiplayer and Singleplayer buttons be on the same line",
 
     "modmenu.summaryTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out.",
     "modmenu.descriptionTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out."
