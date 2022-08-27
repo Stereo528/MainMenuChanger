@@ -1,7 +1,5 @@
 package io.github.stereo528.mainmenuchanger.client;
 
-import com.mojang.authlib.minecraft.client.MinecraftClient;
-import io.github.stereo528.mainmenuchanger.mixin.TitleScreenMixin;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
@@ -17,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import io.github.stereo528.mainmenuchanger.config.ModConfig;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 
 import java.util.List;
 import java.util.Objects;
@@ -40,48 +38,71 @@ public class MainMenuChangerClient implements ClientModInitializer {
     }
 
     private static void mergeMultiplayerAndSingleplayer(Minecraft minecraft, Screen screen, int scaledWidth, int scaledHeight) {
-        final int space = 12;
+        final int space = 24;
         if (screen instanceof TitleScreen titleScreen) {
             List<AbstractWidget> widgetList = Screens.getButtons((Screen) (Object) screen);
             for (AbstractWidget button : widgetList) {
 
                 if (MainMenuChangerClient.config.mergeMultiAndSingle) {
-                    if (Objects.equals(button.getMessage(), Component.translatable("menu.singleplayer"))) {
-                        button.setWidth(98);
-                        button.y += space*2;
-                    }
-                    if (Objects.equals(button.getMessage(), Component.translatable("menu.multiplayer"))) {
-                        button.setWidth(98);
-                        //button.y -= space;
-                        button.x += 102;
-                    }
+                    //bring buttons up so there isn't a weird gap, but only if realms be gone and sp & mp buttons are merged
+                    if(MainMenuChangerClient.config.disableRealmsButtonAndNotifs) {
+                        if (Objects.equals(button.getMessage(), Component.translatable("menu.singleplayer"))) {
+                            button.setWidth(98);
+                            button.y += space;
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("menu.multiplayer"))) {
+                            button.setWidth(98);
+                            button.x += 102;
+                        }
+                        //do a funny if modmenu is installed & realms button is off
+                        // TODO Make this it's own config option
+                        if (Objects.equals(button.getMessage(), Component.translatable("modmenu.title"))) {
+                            button.setWidth(64);
+                            button.x += 68;
+                        }
 
-
-                    //do a funny if modmenu is installed
-
-                    if (Objects.equals(button.getMessage(), Component.translatable("modmenu.title"))) {
-                        button.setWidth(64);
-                        button.x += 68;
-                    }
-
-                    //bring buttons up so there isnt a weird gap, part 2
-                    if (Objects.equals(button.getMessage(), Component.translatable("menu.online"))) {
-                        button.y -= space;
-                    }
-                    if (Objects.equals(button.getMessage(), Component.translatable("menu.options"))) {
-                        button.y -= (space*2)+12;
-                        button.setWidth(64);
-                    }
-                    if (Objects.equals(button.getMessage(), Component.translatable("menu.quit"))) {
-                        button.y -= (space*2)+12;
-                        button.setWidth(64);
-                        button.x += 34;
-                    }
-                    if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.language"))) {
-                        button.y -= space;
-                    }
-                    if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.accessibility"))) {
-                        button.y -= space;
+                        if (Objects.equals(button.getMessage(), Component.translatable("menu.options"))) {
+                            button.y += -space-12;
+                            button.setWidth(64);
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("menu.quit"))) {
+                            button.y += -space-12;
+                            button.setWidth(64);
+                            button.x += 34;
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.language"))) {
+                            button.y += -space-12;
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.accessibility"))) {
+                            button.y += -space-12;
+                        }
+                    } else { // bring everything up by 1 button so there isnt a gap from the title to sp/mp buttons
+                        if (Objects.equals(button.getMessage(), Component.translatable("menu.singleplayer"))) {
+                            button.setWidth(98);
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("menu.multiplayer"))) {
+                            button.setWidth(98);
+                            button.x += 102;
+                            button.y -= space;
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("menu.online"))) {
+                            button.y -= space;
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("menu.options"))) {
+                            button.y -= space/2;
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("menu.quit"))) {
+                            button.y -= space/2;
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.language"))) {
+                            button.y -= space;
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.accessibility"))) {
+                            button.y -= space;
+                        }
+                        if (Objects.equals(button.getMessage(), Component.translatable("modmenu.title"))) {
+                            button.y -= space;
+                        }
                     }
                 }
             }
