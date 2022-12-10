@@ -123,16 +123,16 @@ public class TitleScreenMixin extends Screen {
 
                 //bring buttons up so there isnt a weird gap, part 2
                 if (Objects.equals(button.getMessage(), Component.translatable("menu.options"))) {
-                    button.y -= space;
+                    button.setY(button.getY() - space);
                 }
                 if (Objects.equals(button.getMessage(), Component.translatable("menu.quit"))) {
-                    button.y -= space;
+                    button.setY(button.getY() - space);
                 }
                 if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.language"))) {
-                    button.y -= space;
+                    button.setY(button.getY() - space);
                 }
                 if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.accessibility"))) {
-                    button.y -= space;
+                    button.setY(button.getY() - space);
                 }
             }
             if (MainMenuChangerClient.config.disableSideButtons) {
