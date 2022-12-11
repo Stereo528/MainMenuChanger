@@ -1,17 +1,14 @@
 {
     "text.mainmenuchanger.modcount": "%d (%d mods)",
 
-    "text.autoconfig.mainmenuchanger.title": "Main Menu Changer config",
-    "text.autoconfig.mainmenuchanger.option.smallerSplash": "Smaller splash",
-    "text.autoconfig.mainmenuchanger.option.changeCopyrightToC": "Change copyright to ©",
-    "text.autoconfig.mainmenuchanger.option.shorterVersionText": "Shorter version text",
-    "text.autoconfig.mainmenuchanger.option.shorterVersionText.@Tooltip": "Changes the version text to <version> <modloader>.",
-    "text.autoconfig.mainmenuchanger.option.modCount": "Mod count",
-    "text.autoconfig.mainmenuchanger.option.disableRealmsButtonAndNotifs": "Disable Realms button and notifications",
-    "text.autoconfig.mainmenuchanger.option.disableSideButtons": "Disable side buttons",
-    "text.autoconfig.mainmenuchanger.option.disableSideButtons.@Tooltip": "Removes Language and Accessibility buttons from the title screen.",
-    "text.autoconfig.mainmenuchanger.option.mergeMultiAndSingle": "Merge Multiplayer & Singleplayer Buttons",
-    "text.autoconfig.mainmenuchanger.option.mergeMultiAndSingle.@Tooltip": "Make the Multiplayer and Singleplayer buttons be on the same line",
+    "mainmenuchanger.midnightconfig.title": "Main Menu Changer config",
+    "mainmenuchanger.midnightconfig.smallerSplash": "Smaller splash",
+    "mainmenuchanger.midnightconfig.changeCopyrightToC": "Change copyright to ©",
+    "mainmenuchanger.midnightconfig.shorterVersionText": "Shorter version text",
+    "mainmenuchanger.midnightconfig.modCount": "Mod count",
+    "mainmenuchanger.midnightconfig.disableRealmsButtonAndNotifs": "Disable Realms button and notifications",
+    "mainmenuchanger.midnightconfig.disableSideButtons": "Disable side buttons",
+    "mainmenuchanger.midnightconfig.mergeMultiAndSingle": "Merge Multiplayer & Singleplayer Buttons",
 
     "modmenu.summaryTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out.",
     "modmenu.descriptionTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out."

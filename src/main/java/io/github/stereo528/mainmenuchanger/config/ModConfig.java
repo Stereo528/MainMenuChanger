@@ -1,31 +1,21 @@
 package io.github.stereo528.mainmenuchanger.config;
 
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
+import eu.midnightdust.lib.config.MidnightConfig;
 
 
-@Config(name = "mainmenuchanger")
-public class ModConfig implements ConfigData {
+public class ModConfig extends MidnightConfig {
 
-    public boolean smallerSplash = false;
+    @Entry public static boolean smallerSplash = false;
 
-    public boolean changeCopyrightToC = false;
+    @Entry public static boolean changeCopyrightToC = false;
 
-    @Comment("Changes the version text to <version> <modloader>.")
-    @ConfigEntry.Gui.Tooltip
-    public boolean shorterVersionText = false;
+    @Entry public static boolean shorterVersionText = false;
 
-    public boolean modCount = false;
+    @Entry public static boolean modCount = false;
 
-    public boolean disableRealmsButtonAndNotifs = false;
+    @Entry public static boolean disableRealmsButtonAndNotifs = false;
 
-    @Comment("Removes Language and Accessibility buttons from the title screen.")
-    @ConfigEntry.Gui.Tooltip
-    public boolean disableSideButtons = false;
+    @Entry public static boolean disableSideButtons = false;
 
-    @Comment("Make the Multiplayer and Singleplayer buttons be on the same line")
-    @ConfigEntry.Gui.Tooltip
-    public boolean mergeMultiAndSingle = false;
+    @Entry public static boolean mergeMultiAndSingle = false;
 }

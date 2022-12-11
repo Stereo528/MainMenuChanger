@@ -1,5 +1,7 @@
 package io.github.stereo528.mainmenuchanger.client;
 
+import eu.midnightdust.lib.config.MidnightConfig;
+import io.github.stereo528.mainmenuchanger.config.ModConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
@@ -12,16 +14,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
-import io.github.stereo528.mainmenuchanger.config.ModConfig;
-
 
 import java.util.List;
 import java.util.Objects;
 
 public class MainMenuChangerClient implements ClientModInitializer {
-    public static ModConfig config;
+
+    public static final String MODID = "mainmenuchanger";
     public static final Logger LOGGER = LoggerFactory.getLogger("MainMenuChanger");
 
     ResourceLocation latePhase = new ResourceLocation("mainmenuchanger", "late");
@@ -29,8 +28,7 @@ public class MainMenuChangerClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        AutoConfig.register(ModConfig.class, JanksonConfigSerializer::new);
-        config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+        MidnightConfig.init(MODID, ModConfig.class);
         LOGGER.info("MainMenuChanger Loaded!");
 
         ScreenEvents.AFTER_INIT.addPhaseOrdering(Event.DEFAULT_PHASE, latePhase);
@@ -43,9 +41,9 @@ public class MainMenuChangerClient implements ClientModInitializer {
             List<AbstractWidget> widgetList = Screens.getButtons((Screen) (Object) screen);
             for (AbstractWidget button : widgetList) {
 
-                if (MainMenuChangerClient.config.mergeMultiAndSingle) {
+                if (ModConfig.mergeMultiAndSingle) {
                     //bring buttons up so there isn't a weird gap, but only if realms be gone and sp & mp buttons are merged
-                    if(MainMenuChangerClient.config.disableRealmsButtonAndNotifs) {
+                    if(ModConfig.disableRealmsButtonAndNotifs) {
                         if (Objects.equals(button.getMessage(), Component.translatable("menu.singleplayer"))) {
                             button.setWidth(98);
                             button.setY(button.getY() + space);
