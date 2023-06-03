@@ -1,5 +1,6 @@
 package io.github.stereo528.mainmenuchanger.mixin;
 
+import io.github.stereo528.mainmenuchanger.client.MainMenuChangerClient;
 import io.github.stereo528.mainmenuchanger.config.ModConfig;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.loader.api.FabricLoader;
@@ -24,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
+import java.time.Year;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,6 +45,11 @@ public class TitleScreenMixin extends Screen {
     protected void changeCopyright(CallbackInfo info) {
         if (ModConfig.changeCopyrightToC) {
             COPYRIGHT_TEXT = Component.literal("© Mojang AB");
+            if (ModConfig.includeYearInCopyright) {
+                COPYRIGHT_TEXT = Component.literal("© Mojang AB (2009-" + Year.now().getValue() + ")");
+            }
+        } else if (ModConfig.includeYearInCopyright && !ModConfig.changeCopyrightToC) {
+            COPYRIGHT_TEXT = Component.literal("Copyright Mojang AB (2009-" + Year.now().getValue() + "). Do not distribute!");
         } else {
             COPYRIGHT_TEXT = Component.literal("Copyright Mojang AB. Do not distribute!");
         }
@@ -74,7 +81,7 @@ public class TitleScreenMixin extends Screen {
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/TitleScreen;drawString(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V"), index = 2)
     public String drawString(String par3) {
         String version = SharedConstants.getCurrentVersion().getName();
-        if (ModConfig.shorterVersionText) {
+        if (ModConfig.versionTextEnum == ModConfig.VersionTextEnum.SHORT) {
             if (this.minecraft.isDemo()) {
                 version = version + "Demo";
             } else {
@@ -85,7 +92,16 @@ public class TitleScreenMixin extends Screen {
             }
 
 
-        } else {
+        } else if (ModConfig.versionTextEnum == ModConfig.VersionTextEnum.CUSTOM) {
+            String customVersion = ModConfig.customVersionString;
+            assert this.minecraft != null;
+            String versionTemp = customVersion.replace("{minecraft}", SharedConstants.getCurrentVersion().getName());
+            if(FabricLoader.getInstance().isModLoaded("quilt_loader")) {
+                version = versionTemp.replace("{loader}", this.minecraft.getVersionType());
+            } else {
+                version = versionTemp.replace("{loader}", this.minecraft.getVersionType() + " " + FabricLoader.getInstance().getModContainer("fabricloader").get().getMetadata().getVersion().getFriendlyString());
+            }
+        } else if(ModConfig.versionTextEnum == ModConfig.VersionTextEnum.VANILLA) {
             version = "Minecraft " + version;
             if (this.minecraft.isDemo()) {
                 version = version + " Demo";

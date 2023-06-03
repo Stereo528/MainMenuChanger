@@ -9,6 +9,12 @@
     "mainmenuchanger.midnightconfig.disableRealmsButtonAndNotifs": "Disable Realms button and notifications",
     "mainmenuchanger.midnightconfig.disableSideButtons": "Disable side buttons",
     "mainmenuchanger.midnightconfig.mergeMultiAndSingle": "Merge Multiplayer & Singleplayer Buttons",
+    "mainmenuchanger.midnightconfig.includeYearInCopyright": "Include Year of Copyright",
+    "mainmenuchanger.midnightconfig.customVersionString": "Custom Version String",
+    "mainmenuchanger.midnightconfig.versionTextEnum": "Version Text Style",
+    "mainmenuchanger.midnightconfig.enum.VersionTextEnum.VANILLA": "Vanilla",
+    "mainmenuchanger.midnightconfig.enum.VersionTextEnum.SHORT": "Short",
+    "mainmenuchanger.midnightconfig.enum.VersionTextEnum.CUSTOM": "Custom",
 
     "modmenu.summaryTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out.",
     "modmenu.descriptionTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out."

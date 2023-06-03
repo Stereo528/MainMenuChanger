@@ -6,6 +6,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
@@ -24,7 +25,6 @@ public class MainMenuChangerClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("MainMenuChanger");
 
     ResourceLocation latePhase = new ResourceLocation("mainmenuchanger", "late");
-
 
     @Override
     public void onInitializeClient() {
