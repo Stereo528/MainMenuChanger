@@ -4,7 +4,8 @@
   "package": "io.github.stereo528.mainmenuchanger.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "TitleScreenMixin"
+    "TitleScreenMixin",
+    "SplashRendererMixin"
   ],
   "client": [
   ],

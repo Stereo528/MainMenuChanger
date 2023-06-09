@@ -8,10 +8,12 @@ import net.minecraft.SharedConstants;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.SplashRenderer;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.util.Mth;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
@@ -32,10 +34,7 @@ import java.util.Objects;
 
 @Mixin(TitleScreen.class)
 public class TitleScreenMixin extends Screen {
-    @Shadow private String splash;
     @Shadow @Final @Mutable public static Component COPYRIGHT_TEXT;
-
-    @Shadow @Final private static Logger LOGGER;
 
     protected TitleScreenMixin(Component component) {
         super(component);
@@ -63,23 +62,8 @@ public class TitleScreenMixin extends Screen {
         }
     }
 
-    @ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;scale(FFF)V"))
-    public void scale(Args args) {
-        float o = 1.8F - Mth.abs(Mth.sin((float) (Util.getMillis() % 1000L) / 1000.0F * 6.2831855F) * 0.1F);
-        o = o * 100.0F / (float) (this.font.width(this.splash) + 32);
-        if (ModConfig.smallerSplash) {
-            args.set(0, o / 2);
-            args.set(1, o / 2);
-            args.set(2, o / 2);
-        } else {
-            args.set(0, o);
-            args.set(1, o);
-            args.set(2, o);
-        }
-    }
-
-    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/TitleScreen;drawString(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V"), index = 2)
-    public String drawString(String par3) {
+    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/TitleScreen;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V"))
+    public String drawString() {
         String version = SharedConstants.getCurrentVersion().getName();
         if (ModConfig.versionTextEnum == ModConfig.VersionTextEnum.SHORT) {
             if (this.minecraft.isDemo()) {
@@ -112,7 +96,7 @@ public class TitleScreenMixin extends Screen {
                 if (ModConfig.modCount) {
                     version = I18n.get("text.mainmenuchanger.modcount", version, FabricLoader.getInstance().getAllMods().size());
                 } else {
-                    version = version + I18n.get("menu.modded", new Object[0]);
+                    version = version + I18n.get("menu.modded");
                 }
             }
         }
