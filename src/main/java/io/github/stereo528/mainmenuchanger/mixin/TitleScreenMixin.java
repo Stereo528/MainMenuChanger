@@ -62,8 +62,8 @@ public class TitleScreenMixin extends Screen {
         }
     }
 
-    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/TitleScreen;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V"))
-    public String drawString() {
+    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)I"))
+    public String drawModifiedVersionString(String par3) {
         String version = SharedConstants.getCurrentVersion().getName();
         if (ModConfig.versionTextEnum == ModConfig.VersionTextEnum.SHORT) {
             if (this.minecraft.isDemo()) {
