@@ -20,9 +20,12 @@ public class ModConfig extends MidnightConfig {
 
     @Entry(category = "text") public static boolean mergeMultiAndSingle = false;
 
-    @Entry(category = "text") public static VersionTextEnum versionTextEnum = VersionTextEnum.VANILLA;
-    public enum VersionTextEnum {
+    @Entry(category = "text") public static TextTypeEnum versionTextEnum = TextTypeEnum.VANILLA;
+
+    @Entry(category = "text") public static String customVersionString = "{minecraft} - {loader}";
+
+    public enum TextTypeEnum {
         VANILLA, SHORT, CUSTOM
     }
-    @Entry(category = "text") public static String customVersionString = "{minecraft} - {loader}";
+
 }

@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.SharedConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
@@ -24,15 +25,15 @@ public class MainMenuChangerClient implements ClientModInitializer {
     public static final String MODID = "mainmenuchanger";
     public static final Logger LOGGER = LoggerFactory.getLogger("MainMenuChanger");
 
-    ResourceLocation latePhase = new ResourceLocation("mainmenuchanger", "late");
+    ResourceLocation mergePhase = new ResourceLocation("mainmenuchanger", "merge_buttons");
 
     @Override
     public void onInitializeClient() {
         MidnightConfig.init(MODID, ModConfig.class);
         LOGGER.info("MainMenuChanger Loaded!");
 
-        ScreenEvents.AFTER_INIT.addPhaseOrdering(Event.DEFAULT_PHASE, latePhase);
-        ScreenEvents.AFTER_INIT.register(latePhase, MainMenuChangerClient::mergeMultiplayerAndSingleplayer);
+        ScreenEvents.AFTER_INIT.addPhaseOrdering(Event.DEFAULT_PHASE, mergePhase);
+        ScreenEvents.AFTER_INIT.register(mergePhase, MainMenuChangerClient::mergeMultiplayerAndSingleplayer);
     }
 
     private static void mergeMultiplayerAndSingleplayer(Minecraft minecraft, Screen screen, int scaledWidth, int scaledHeight) {
@@ -92,10 +93,10 @@ public class MainMenuChangerClient implements ClientModInitializer {
                         if (Objects.equals(button.getMessage(), Component.translatable("menu.quit"))) {
                             button.setY(button.getY() - space/2);
                         }
-                        if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.language"))) {
+                        if (Objects.equals(button.getMessage(), Component.translatable("options.language"))) {
                             button.setY(button.getY() - space);
                         }
-                        if (Objects.equals(button.getMessage(), Component.translatable("narrator.button.accessibility"))) {
+                        if (Objects.equals(button.getMessage(), Component.translatable("options.accessibility"))) {
                             button.setY(button.getY() - space);
                         }
                         if (Objects.equals(button.getMessage(), Component.translatable("modmenu.title"))) {

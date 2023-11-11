@@ -12,9 +12,9 @@
     "mainmenuchanger.midnightconfig.includeYearInCopyright": "Include Year of Copyright",
     "mainmenuchanger.midnightconfig.customVersionString": "Custom Version String",
     "mainmenuchanger.midnightconfig.versionTextEnum": "Version Text Style",
-    "mainmenuchanger.midnightconfig.enum.VersionTextEnum.VANILLA": "Vanilla",
-    "mainmenuchanger.midnightconfig.enum.VersionTextEnum.SHORT": "Short",
-    "mainmenuchanger.midnightconfig.enum.VersionTextEnum.CUSTOM": "Custom",
+    "mainmenuchanger.midnightconfig.enum.TextTypeEnum.VANILLA": "Vanilla",
+    "mainmenuchanger.midnightconfig.enum.TextTypeEnum.SHORT": "Short",
+    "mainmenuchanger.midnightconfig.enum.TextTypeEnum.CUSTOM": "Custom",
 
     "modmenu.summaryTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out.",
     "modmenu.descriptionTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out."
