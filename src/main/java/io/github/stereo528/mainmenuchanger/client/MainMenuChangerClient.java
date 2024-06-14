@@ -6,8 +6,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.SharedConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
@@ -25,7 +23,7 @@ public class MainMenuChangerClient implements ClientModInitializer {
     public static final String MODID = "mainmenuchanger";
     public static final Logger LOGGER = LoggerFactory.getLogger("MainMenuChanger");
 
-    ResourceLocation mergePhase = new ResourceLocation("mainmenuchanger", "merge_buttons");
+    ResourceLocation mergePhase = ResourceLocation.fromNamespaceAndPath("mainmenuchanger", "merge_buttons");
 
     @Override
     public void onInitializeClient() {

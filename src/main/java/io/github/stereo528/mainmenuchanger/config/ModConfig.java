@@ -8,9 +8,9 @@ public class ModConfig extends MidnightConfig {
 
     @Entry(category = "text") public static boolean smallerSplash = false;
 
-    @Entry(category = "text") public static boolean changeCopyrightToC = false;
-
-    @Entry(category = "text") public static boolean includeYearInCopyright = true;
+//    @Entry(category = "text") public static boolean changeCopyrightToC = false;
+//
+//    @Entry(category = "text") public static boolean includeYearInCopyright = true;
 
     @Entry(category = "text") public static boolean modCount = false;
 

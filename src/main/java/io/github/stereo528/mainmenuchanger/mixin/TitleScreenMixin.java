@@ -1,6 +1,5 @@
 package io.github.stereo528.mainmenuchanger.mixin;
 
-import io.github.stereo528.mainmenuchanger.client.MainMenuChangerClient;
 import io.github.stereo528.mainmenuchanger.config.ModConfig;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.loader.api.FabricLoader;
@@ -21,8 +20,6 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static org.lwjgl.glfw.GLFW.glfwSetWindowTitle;
-
 import java.time.Year;
 import java.util.List;
 import java.util.Objects;
@@ -36,19 +33,19 @@ public class TitleScreenMixin extends Screen {
         super(component);
     }
 
-    @Inject(method = "init", at = @At("HEAD"))
-    protected void changeCopyright(CallbackInfo info) {
-        if (ModConfig.changeCopyrightToC) {
-            COPYRIGHT_TEXT = Component.literal("© Mojang AB");
-            if (ModConfig.includeYearInCopyright) {
-                COPYRIGHT_TEXT = Component.literal("© Mojang AB (2009-" + Year.now().getValue() + ")");
-            }
-        } else if (ModConfig.includeYearInCopyright && !ModConfig.changeCopyrightToC) {
-            COPYRIGHT_TEXT = Component.literal("Copyright Mojang AB (2009-" + Year.now().getValue() + "). Do not distribute!");
-        } else {
-            COPYRIGHT_TEXT = Component.literal("Copyright Mojang AB. Do not distribute!");
-        }
-    }
+//    @Inject(method = "init", at = @At("HEAD"))
+//    protected void changeCopyright(CallbackInfo info) {
+//        if (ModConfig.changeCopyrightToC) {
+//            COPYRIGHT_TEXT = Component.translatable("© Mojang AB"); //Doesn't Work
+//            if (ModConfig.includeYearInCopyright) {
+//                COPYRIGHT_TEXT = Component.literal("© Mojang AB (2009-" + Year.now().getValue() + ")"); //Doesn't Work
+//            }
+//        } else if (ModConfig.includeYearInCopyright && !ModConfig.changeCopyrightToC) {
+//            COPYRIGHT_TEXT = Component.literal("Copyright Mojang AB (2009-" + Year.now().getValue() + "). Do not distribute!"); //Doesn't Work
+//        } else {
+//            COPYRIGHT_TEXT = Component.translatable("title.credits");
+//        }
+//    }
 
     @Inject(method = "init", at = @At("HEAD"))
     protected void noRealmsNotifs(CallbackInfo info) {
