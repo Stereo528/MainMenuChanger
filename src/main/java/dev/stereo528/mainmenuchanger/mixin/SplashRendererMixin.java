@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(SplashRenderer.class)
 public class SplashRendererMixin{
 
-    @Shadow @Final private String splash;
     public SplashRendererMixin() {
     }
 
