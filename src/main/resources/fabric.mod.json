@@ -6,7 +6,7 @@
   "description": "Configurable mod that lets you change how the Main Menu is laid out.",
   "authors": ["Stereo528"],
   "contact": {
-    "homepage": "https://stereo528.github.io",
+    "homepage": "https://stereo528.dev",
     "repository": "https://github.com/Stereo528/MainMenuChanger",
     "issues": "https://github.com/Stereo528/MainMenuChanger/issues"
   },
@@ -15,18 +15,15 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "io.github.stereo528.mainmenuchanger.client.MainMenuChangerClient"
-    ],
-    "modmenu": [
-      "io.github.stereo528.mainmenuchanger.config.ModMenuIntegration"
+      "dev.stereo528.mainmenuchanger.client.MainMenuChangerClient"
     ]
   },
   "mixins": [
-    "MainMenuChanger.mixins.json"
+    "mainmenuchanger.mixins.json"
   ],
   "depends": {
     "minecraft": ">=1.21",
-    "midnightlib": ">=1.5.0-fabric"
+    "midnightlib": ">=1.6.0-fabric"
   },
   "recommends": {
     "modmenu": "*"

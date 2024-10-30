@@ -1,6 +1,6 @@
-package io.github.stereo528.mainmenuchanger.mixin;
+package dev.stereo528.mainmenuchanger.mixin;
 
-import io.github.stereo528.mainmenuchanger.config.ModConfig;
+import dev.stereo528.mainmenuchanger.config.ModConfig;
 import net.minecraft.client.gui.components.SplashRenderer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

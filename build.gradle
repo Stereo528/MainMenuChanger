@@ -1,12 +1,11 @@
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    alias libs.plugins.loom
+    alias libs.plugins.grgit
     id 'maven-publish'
-    id 'org.ajoberstar.grgit' version '5.2.0'
 }
 
-archivesBaseName = "${project.archives_base_name}-mc${project.minecraft_version}"
-version = "${project.mod_version}-rev.${grgit.head().abbreviatedId}"
-//version = project.mod_version
+archivesBaseName = "${project.archives_base_name}-mc${libs.versions.minecraft.get()}"
+version = getVersion()
 group = project.maven_group
 
 repositories {
@@ -15,14 +14,13 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    minecraft libs.minecraft
     mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation libs.fabric.loader
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-
-    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
-    modImplementation("maven.modrinth:midnightlib:${project.midnight_lib_version}")
+    modImplementation libs.fapi
+    modImplementation libs.midnightlib
+    modLocalRuntime libs.bundles.dev
 }
 
 processResources {
@@ -34,10 +32,10 @@ processResources {
     }
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = 21
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+    if (targetJavaVersion >= 21 || JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_21)) {
         it.options.release = targetJavaVersion
     }
 }
@@ -59,7 +57,8 @@ jar {
 
 task buildOrPublish {
     group = "build"
-    String mavenUser = System.getenv().MAVEN_USER
+    //String mavenUser = System.getenv().MAVEN_USER // Commented out to prevent publishing on pre-content builds
+    String mavenUser = null
     if (mavenUser != null && !mavenUser.isEmpty()) {
         dependsOn(tasks.getByName("publish"))
         println("Prepared To Publish to Maven")
@@ -75,7 +74,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId project.maven_group
             artifactId "${project.archives_base_name}"
-            version "${project.version}-mc${project.minecraft_version}"
+            version getVersion()
             from components.java
         }
     }
@@ -90,4 +89,33 @@ publishing {
             authentication { basic(BasicAuthentication) }
         }
     }
+}
+
+String getVersion() {
+    def mod_version = project.mod_version
+    def build_id = System.getenv("GITHUB_RUN_NUMBER")
+
+    // CI builds only
+    if (build_id != null) {
+        return "${mod_version}+build.${build_id}"
+    }
+    if (grgit != null) {
+        def head = null
+        def id = null
+        if (grgit.head() != null) {
+            head = grgit.head()
+            id = head.abbreviatedId
+        }
+
+        // Flag the build if the build tree is not clean
+        if (!grgit.status().clean) {
+            id += "-dirty"
+        }
+
+        return "${mod_version}+rev.${id}"
+    }
+
+    // No tracking information could be found about the build
+    return "${mod_version}+unknown"
+
 }
