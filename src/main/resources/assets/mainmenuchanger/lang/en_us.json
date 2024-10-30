@@ -1,20 +1,10 @@
 {
-    "text.mainmenuchanger.modcount": "%d (%d mods)",
-
-    "mainmenuchanger.midnightconfig.title": "Main Menu Changer config",
-    "mainmenuchanger.midnightconfig.smallerSplash": "Smaller splash",
-    "mainmenuchanger.midnightconfig.changeCopyrightToC": "Change copyright to ©",
-    "mainmenuchanger.midnightconfig.shorterVersionText": "Shorter version text",
-    "mainmenuchanger.midnightconfig.modCount": "Mod count",
-    "mainmenuchanger.midnightconfig.disableRealmsButtonAndNotifs": "Disable Realms button and notifications",
-    "mainmenuchanger.midnightconfig.disableSideButtons": "Disable side buttons",
-    "mainmenuchanger.midnightconfig.mergeMultiAndSingle": "Merge Multiplayer & Singleplayer Buttons",
-    "mainmenuchanger.midnightconfig.includeYearInCopyright": "Include Year of Copyright",
-    "mainmenuchanger.midnightconfig.customVersionString": "Custom Version String",
-    "mainmenuchanger.midnightconfig.versionTextEnum": "Version Text Style",
-    "mainmenuchanger.midnightconfig.enum.TextTypeEnum.VANILLA": "Vanilla",
-    "mainmenuchanger.midnightconfig.enum.TextTypeEnum.SHORT": "Short",
-    "mainmenuchanger.midnightconfig.enum.TextTypeEnum.CUSTOM": "Custom",
+    "mainmenuchanger.midnightconfig.title": "Main Menu Changer",
+    "mainmenuchanger.midnightconfig.category.main": "Main Config",
+    "mainmenuchanger.midnightconfig.splashScaleMult": "Splash Scale Multiplier",
+    "mainmenuchanger.midnightconfig.splashScaleMult.tooltip": "Greater than 1 is only useful on smaller GUI Scales",
+    "mainmenuchanger.midnightconfig.hideSplash": "Hide Splash",
+    "mainmenuchanger.midnightconfig.hideSplash.tooltip": "Overwrites the Multiplier Option",
 
     "modmenu.summaryTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out.",
     "modmenu.descriptionTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out."

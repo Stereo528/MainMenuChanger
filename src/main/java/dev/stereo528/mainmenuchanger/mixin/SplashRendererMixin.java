@@ -17,7 +17,8 @@ public class SplashRendererMixin{
 
     @ModifyVariable(method = "render", at = @At(value = "STORE"))
     public float setSplashScale(float f) {
-        if (ModConfig.smallerSplash) return (float) (f/1.5);
-        return f;
+        if (ModConfig.hideSplash) return 0f;
+        return ModConfig.splashScaleMult * f;
     }
+
 }
