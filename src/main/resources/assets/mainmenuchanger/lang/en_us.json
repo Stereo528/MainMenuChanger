@@ -6,6 +6,14 @@
     "mainmenuchanger.midnightconfig.hideSplash": "Hide Splash",
     "mainmenuchanger.midnightconfig.hideSplash.tooltip": "Overwrites the Multiplier Option",
 
+    "mainmenuchanger.midnightconfig.langButton": "Language Button",
+    "mainmenuchanger.midnightconfig.accessButton": "Accessibility Button",
+    "mainmenuchanger.midnightconfig.realmsButton": "Realms Button",
+    "mainmenuchanger.midnightconfig.realmsButton.tooltip": "WARNING: If using ModMenu make sure it's in its default position!\nAny changes may make the button inaccessible with this option off!",
+
+    "mainmenuchanger.midnightconfig.smallButtons": "Smaller Buttons",
+    "mainmenuchanger.midnightconfig.smallButtons.tooltip": "Places the Singleplayer and Multiplayer Buttons by each other",
+
     "modmenu.summaryTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out.",
     "modmenu.descriptionTranslation.mainmenuchanger": "Configurable mod that lets you change how the Main Menu is laid out."
 }

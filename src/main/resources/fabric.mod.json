@@ -21,6 +21,7 @@
   "mixins": [
     "mainmenuchanger.mixins.json"
   ],
+  "accessWidener": "mainmenuchanger.accesswidener",
   "depends": {
     "minecraft": ">=1.21",
     "midnightlib": ">=1.6.0-fabric"

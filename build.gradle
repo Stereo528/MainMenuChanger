@@ -23,12 +23,16 @@ dependencies {
     modLocalRuntime libs.bundles.dev
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/mainmenuchanger.accesswidener")
+}
+
 processResources {
-    inputs.property "version", project.version
+    inputs.property "version", version
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand "version": version
     }
 }
 
